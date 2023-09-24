@@ -78,6 +78,11 @@ io.on('connection',(client)=>{
 
 })
 
+
+// emit函数用于服务器向客户端发送数据
+// 而这个函数的目的是将更新后的聊天室数据发送给连接到的所有客户端
+// (在线？离线？)
+// 第一个emit是向当前的 一个 客户端发送，第二个是向剩下的全部
 function sendUpdatedChatRoomData(client){
   client.emit("RetrieveChatRoomData",chatRoomData);
   client.broadcast.emit("RetrieveChatRoomData",chatRoomData)

@@ -53,13 +53,13 @@ io.on('connection',(client)=>{
   })
 
   client.on("CreateUserData", ()=>{
-    let userID=uuid();
+    let userID=uuid(); //为用户提供一个随机的UUID
     let username=uniqueNamesGenerator({dictionaries:[adjectives,names]});
-    var userData={userID:userID, username:username}
+    var userData={userID:userID, username:username} //这个或许以后存到数据库中？
     client.emit("SetUserData",userData)
   });
 
-  client.on('disconnecting', (data)=>{
+  client.on('disconnecting', ()=>{
     console.log("Client disconnecting...");
 
     if(connectedClients[client.id]){
